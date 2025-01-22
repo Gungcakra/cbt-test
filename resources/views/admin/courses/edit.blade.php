@@ -236,7 +236,7 @@
                 <div class="flex flex-col gap-[10px]">
                     <p class="font-semibold">Publish Date</p>
                     <div class="flex gap-[10px] items-center">
-                        <a href="#" class="group relative flex w-full items-center gap-[14px] p-[14px_16px] border border-[#EEEEEE] rounded-full transition-all duration-300 aria-checked:border-2 aria-checked:border-[#0A090B]" data-group="publish-date" aria-checked="false" onclick="handleActiveAnchor(this)">
+                        <a href="#" class="group relative flex w-full items-center gap-[14px] p-[14px_16px] border border-[#EEEEEE] rounded-full transition-all duration-300 aria-checked:border-2 aria-checked:border-[#0A090B]" data-group="publish-date" aria-checked="true" onclick="handleActiveAnchor(this)">
                             <div class="w-[24px] h-[24px] flex shrink-0 overflow-hidden">
                                 <img src="{{asset('images/icons/clock.svg')}}" class="w-full h-full" alt="icon">
                             </div>
@@ -263,8 +263,8 @@
                             <img src="{{asset('images/icons/security-user.svg')}}" class="w-full h-full object-contain" alt="icon">
                         </div>
                         <select id="access" class="pl-1 font-semibold focus:outline-none w-full text-[#0A090B] invalid:text-[#7F8190] invalid:font-normal appearance-none bg-[url('{{asset('images/icons/arrow-down.svg')}}')] bg-no-repeat bg-right" name="access" required>
-                            <option value="" disabled selected hidden>Choose the access type</option>
-                            <option value="Invitation Only" class="font-semibold">Invitation Only</option>
+                            <option value="" disabled hidden>Choose the access type</option>
+                            <option value="Invitation Only" class="font-semibold" selected >Invitation Only</option>
                         </select>
                     </div>
                 </div>
