@@ -34,6 +34,12 @@ Route::middleware('auth')->group(function () {
         Route::post('/courses/question/save/{course}', [CourseQuestionController::class, 'store'])->middleware('role:teacher')
             ->name('courses.create.question.store');
 
+        Route::get('/courses/question/edit/{courseQuestion}', [CourseQuestionController::class, 'edit'])->middleware('role:teacher')
+            ->name('courses.question.edit');
+
+        Route::post('/courses/question/update/{courseQuestion}', [CourseQuestionController::class, 'update'])->middleware('role:teacher')
+            ->name('courses.question.update');
+
         Route::resource('courses_questions', CourseQuestionController::class)
             ->middleware('role:teacher');
 
