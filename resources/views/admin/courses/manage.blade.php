@@ -144,7 +144,7 @@
                 <div class="breadcrumb flex items-center gap-[30px]">
                     <a href="#" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">Home</a>
                     <span class="text-[#7F8190] last:text-[#0A090B]">/</span>
-                    <a href="index.html" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">Manage Courses</a>
+                    <a href="{{ route('dashboard.courses.index') }}" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">Manage Courses</a>
                     <span class="text-[#7F8190] last:text-[#0A090B]">/</span>
                     <a href="#" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold ">Course Details</a>
                 </div>
@@ -162,13 +162,13 @@
                                 <div class="w-6 h-6 flex shrink-0">
                                     <img src="{{  asset('images/icons/calendar-add.svg')}}" alt="icon">
                                 </div>
-                                <p class="font-semibold">22 August 2024</p>
+                                <p class="font-semibold">{{ Carbon\Carbon::parse($course->created_at)->format('F j, Y') }}</p>
                             </div>
                             <div class="flex gap-[10px] items-center">
                                 <div class="w-6 h-6 flex shrink-0">
                                     <img src="{{  asset('images/icons/profile-2user-outline.svg')}}" alt="icon">
                                 </div>
-                                <p class="font-semibold">489,509 students</p>
+                                <p class="font-semibold">{{ count($students) }}</p>
                             </div>
                         </div>
                     </div>
