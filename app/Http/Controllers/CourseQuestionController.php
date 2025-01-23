@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\CourseQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 
 class CourseQuestionController extends Controller
 {
@@ -18,17 +23,50 @@ class CourseQuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Course $course)
     {
-        //
+        $students = $course->students()->orderBy('id', 'DESC')->get();
+        return view('admin.questions.create', [
+            'course' => $course,
+            'students' => $students
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request , Course $course)
     {
-        //
+        $validated = $request->validate([
+            'question' => 'required|string|max:255',
+            'answers' => 'required|array',
+            'answers.*' => 'required|string',
+            'correct_answer' => 'required|integer',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $question = $course->questions()->create([
+                'question' => $request->question,
+            ]);
+            foreach ($request->answers as $key => $answer) {
+                $isCorrect = $request->correct_answer == $key ? 1 : 0;
+                $question->answers()->create([
+                    'answer' => $answer,
+                    'is_correct' => $isCorrect
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('dashboard.courses.show', parameters: $course->id)->with('success', 'Course created successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $error = ValidationException::withMessages([
+                'system_error' => ['System error! ' . $e->getMessage()]
+            ]);
+            throw $error;
+        }
     }
 
     /**

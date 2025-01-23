@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="{{ asset('css/output.css') }}" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('css/output.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body class="font-poppins text-[#0A090B]">
     <section id="content" class="flex">
@@ -199,11 +199,11 @@
                         <a href="" class="flex gap-[10px] items-center text-[#FD445E]">
                             <div class="w-5 h-5">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17.5 4.98332C14.725 4.70832 11.9333 4.56665 9.15 4.56665C7.5 4.56665 5.85 4.64998 4.2 4.81665L2.5 4.98332" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M7.08325 4.14163L7.26659 3.04996C7.39992 2.25829 7.49992 1.66663 8.90825 1.66663H11.0916C12.4999 1.66663 12.6083 2.29163 12.7333 3.05829L12.9166 4.14163" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M15.7084 7.6167L15.1667 16.0084C15.0751 17.3167 15.0001 18.3334 12.6751 18.3334H7.32508C5.00008 18.3334 4.92508 17.3167 4.83341 16.0084L4.29175 7.6167" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M8.6084 13.75H11.3834" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M7.91675 10.4166H12.0834" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17.5 4.98332C14.725 4.70832 11.9333 4.56665 9.15 4.56665C7.5 4.56665 5.85 4.64998 4.2 4.81665L2.5 4.98332" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M7.08325 4.14163L7.26659 3.04996C7.39992 2.25829 7.49992 1.66663 8.90825 1.66663H11.0916C12.4999 1.66663 12.6083 2.29163 12.7333 3.05829L12.9166 4.14163" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M15.7084 7.6167L15.1667 16.0084C15.0751 17.3167 15.0001 18.3334 12.6751 18.3334H7.32508C5.00008 18.3334 4.92508 17.3167 4.83341 16.0084L4.29175 7.6167" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M8.6084 13.75H11.3834" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M7.91675 10.4166H12.0834" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <span class="font-semibold text-sm">Delete Course</span>
@@ -214,7 +214,7 @@
             <div id="course-test" class="mx-[70px] w-[870px] mt-[30px]">
                 <h2 class="font-bold text-2xl">Course Tests</h2>
                 <div class="flex flex-col gap-[30px] mt-2">
-                    <a href="add-question.html" class="w-full h-[92px] flex items-center justify-center p-4 border-dashed border-2 border-[#0A090B] rounded-[20px]">
+                    <a href="{{ route('dashboard.courses.create.question', $course) }}" class="w-full h-[92px] flex items-center justify-center p-4 border-dashed border-2 border-[#0A090B] rounded-[20px]">
                         <div class="flex items-center gap-5">
                             <div>
                                 <img src="{{  asset('images/icons/note-add.svg')}}" alt="icon">
@@ -222,10 +222,11 @@
                             <p class="font-bold text-xl">New Question</p>
                         </div>
                     </a>
+                    @forelse($questions as $question)
                     <div class="question-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
                         <div class="flex flex-col gap-[6px]">
                             <p class="text-[#7F8190]">Question</p>
-                            <p class="font-bold text-xl">Why do we need to do marketing?</p>
+                            <p class="font-bold text-xl">{{ $question->question }}</p>
                         </div>
                         <div class="flex items-center gap-[14px]">
                             <a href="#" class="bg-[#0A090B] p-[14px_30px] rounded-full text-white font-semibold">Edit</a>
@@ -236,57 +237,33 @@
                             </form>
                         </div>
                     </div>
-                    <div class="question-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
-                        <div class="flex flex-col gap-[6px]">
-                            <p class="text-[#7F8190]">Question</p>
-                            <p class="font-bold text-xl">Why do we need to do marketing?</p>
-                        </div>
-                        <div class="flex items-center gap-[14px]">
-                            <a href="#" class="bg-[#0A090B] p-[14px_30px] rounded-full text-white font-semibold">Edit</a>
-                            <form action="">
-                                <button class="w-[52px] h-[52px] flex shrink-0 items-center justify-center rounded-full bg-[#FD445E]">
-                                    <img src="{{  asset('images/icons/trash.svg')}}" alt="icon">
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="question-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
-                        <div class="flex flex-col gap-[6px]">
-                            <p class="text-[#7F8190]">Question</p>
-                            <p class="font-bold text-xl">Why do we need to do marketing?</p>
-                        </div>
-                        <div class="flex items-center gap-[14px]">
-                            <a href="#" class="bg-[#0A090B] p-[14px_30px] rounded-full text-white font-semibold">Edit</a>
-                            <form action="">
-                                <button class="w-[52px] h-[52px] flex shrink-0 items-center justify-center rounded-full bg-[#FD445E]">
-                                    <img src="{{  asset('images/icons/trash.svg')}}" alt="icon">
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                    @empty
+                    <p class="text-center font-bold">Belum Ada Pertanyaan!</p>
+                    @endforelse
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const menuButton = document.getElementById('more-button');
             const dropdownMenu = document.querySelector('.dropdown-menu');
-        
-            menuButton.addEventListener('click', function () {
-            dropdownMenu.classList.toggle('hidden');
+
+            menuButton.addEventListener('click', function() {
+                dropdownMenu.classList.toggle('hidden');
             });
-        
+
             // Close the dropdown menu when clicking outside of it
-            document.addEventListener('click', function (event) {
-            const isClickInside = menuButton.contain(event.target) || dropdownMenu.contain(event.target);
-            if (!isClickInside) {
-                dropdownMenu.classList.add('hidden');
-            }
+            document.addEventListener('click', function(event) {
+                const isClickInside = menuButton.contain(event.target) || dropdownMenu.contain(event.target);
+                if (!isClickInside) {
+                    dropdownMenu.classList.add('hidden');
+                }
             });
         });
+
     </script>
-    
+
 </body>
 </html>

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Course;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -53,7 +53,7 @@ class CourseController extends Controller
             $validated['slug'] = Str::slug($request->name);
             $newCourse = Course::create($validated);
             DB::commit();
-            return redirect()->route('admin.courses.index')->with('success', 'Course created successfully');
+            return redirect()->route('dashboard.courses.index')->with('success', 'Course created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
             $error = ValidationException::withMessages([
@@ -68,10 +68,12 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $student = $course->students()->orderBy('id', 'DESC')->get();
+        $students = $course->students()->orderBy('id', 'DESC')->get();
+        $questions = $course->questions()->orderBy('id', 'DESC')->get();
         return view('admin.courses.manage', [
             'course' => $course,
-            'students' => $student
+            'students' => $students,
+            'questions' => $questions
         ]);     
     }
 
