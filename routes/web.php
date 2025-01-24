@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
 
         Route::post('course/student/create/save/{course}', [CourseStudentController::class, 'store'])
             ->middleware('role:teacher')
-            ->name('course.course_students.store');
+            ->name(name: 'course.course_students.store');
 
         Route::get('learning/finished/{course}',[LearningController::class, 'learning_finished'])
             ->middleware('role:student')
