@@ -230,7 +230,8 @@
                         </div>
                         <div class="flex items-center gap-[14px]">
                             <a href="{{ route('dashboard.courses.question.edit', $question) }}" class="bg-[#0A090B] p-[14px_30px] rounded-full text-white font-semibold">Edit</a>
-                            <form action="">
+                            <form method="POST" action="{{ route('dashboard.courses.question.destroy', $question) }}">
+                                @csrf
                                 <button class="w-[52px] h-[52px] flex shrink-0 items-center justify-center rounded-full bg-[#FD445E]">
                                     <img src="{{  asset('images/icons/trash.svg')}}" alt="icon">
                                 </button>

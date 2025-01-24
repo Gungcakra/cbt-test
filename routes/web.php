@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/courses/question/update/{courseQuestion}', [CourseQuestionController::class, 'update'])->middleware('role:teacher')
             ->name('courses.question.update');
 
+        Route::post('/courses/question/destroy/{courseQuestion}', [CourseQuestionController::class, 'destroy'])->middleware('role:teacher')
+            ->name('courses.question.destroy');
+
         Route::resource('courses_questions', CourseQuestionController::class)
             ->middleware('role:teacher');
 
