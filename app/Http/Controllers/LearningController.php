@@ -10,6 +10,6 @@ class LearningController extends Controller
 
     public function index()
     {
-        return 'Selamat datang di halaman pembelajaran';
+        return view('student.index');
     }
 }
