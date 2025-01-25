@@ -19,20 +19,20 @@ class LearningController extends Controller
         foreach ($myCourses as $course) {
             $totalQuestionCourse = $course->questions->count();
             $answeredQuestionCourse = StudentAnswer::where('user_id', $user->id)
-                ->whereHas('question', function ($query) use ($course) {
-                    $query->where('course_id', $course->id);
-                })->distinct()->count();
+                ->whereIn('course_question_id', $course->questions->pluck('id'))
+                ->distinct()
+                ->count('course_question_id');
 
             if ($answeredQuestionCourse < $totalQuestionCourse) {
                 $firstUnansweredQuestion = CourseQuestion::where('course_id', $course->id)
                     ->whereNotIn('id', function ($query) use ($user) {
-                        $query->select('id')->from('student_answers')
+                        $query->select('course_question_id')->from('student_answers')
                             ->where('user_id', $user->id);
                     })->orderBy('id', 'ASC')->first();
 
                 $course->nextQuestionId = $firstUnansweredQuestion?->id;
             } else {
-                $course->nextQuestionId = null;
+                $course->nextQuestionId = 0;
             }
         }
         return view('student.index', [
