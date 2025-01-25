@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\CourseQuestion;
 use App\Models\StudentAnswer;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class LearningController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $myCourses = $user->courses()->with('category')->orderBy('id', 'DESC')->get();
+        $myCourses = $user->courses()->with('category', 'questions')->orderBy('id', 'DESC')->get();
 
         foreach ($myCourses as $course) {
             $totalQuestionCourse = $course->questions->count();
@@ -32,11 +33,29 @@ class LearningController extends Controller
 
                 $course->nextQuestionId = $firstUnansweredQuestion?->id;
             } else {
-                $course->nextQuestionId = 0;
+            $course->nextQuestionId = null;
             }
         }
         return view('student.index', [
             'myCourses' => $myCourses
+        ]);
+    }
+
+    public function learning(Course $course, $question){
+        $user = Auth::user();
+        $isEnrolled = $user->courses->contains($course->id);
+
+        if(!$isEnrolled){
+            abort(404);
+        }
+
+        $currentQuestion = CourseQuestion::where('course_id', $course->id)
+            ->where('id', $question)
+            ->firstOrFail();
+
+        return view('student.learning', [
+            'course' => $course,
+            'question' => $currentQuestion
         ]);
     }
 }

@@ -10,9 +10,9 @@
 
 <body class="font-poppins text-[#0A090B]">
     <section id="content" class="flex">
-        @include('layouts.partials.sidebar')
+        @include('layouts.partials.student.sidebar')
         <div id="menu-content" class="flex flex-col w-full pb-[30px]">
-            @include('layouts.partials.navbar')
+            @include('layouts.partials.student.navbar')
 
             
             @yield('content')
