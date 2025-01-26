@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('learning/finished/{course}',[LearningController::class, 'learning_finished'])
             ->middleware('role:student')
-            ->name('learning.finished.course');
+            ->name(name: 'learning.finished.course');
 
         Route::get('learning/rapport/{course}',[LearningController::class, 'learning_rapport'])
             ->middleware('role:student')

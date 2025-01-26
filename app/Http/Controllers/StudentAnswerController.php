@@ -69,6 +69,19 @@ class StudentAnswerController extends Controller
                 ]);
 
                 DB::commit();
+                $nextQuestionId = CourseQuestion::where('course_id', $course->id)
+                ->where('id', '>', $question)
+                ->orderBy('id', 'asc')->first();
+
+                if($nextQuestionId){
+                    return redirect()->route('dashboard.learning.course', [
+                        'course' => $course, 
+                        'question' => $nextQuestionId
+                    ]);
+                }
+                else{
+                    return redirect()->route('dashboard.learning.finished.course', $course->id);
+                }
             } catch (Exception $e) {
                 DB::rolback();
                 $error = ValidationException::withMessages([
