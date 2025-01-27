@@ -16,7 +16,7 @@ class CourseStudentController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
