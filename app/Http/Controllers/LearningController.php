@@ -33,7 +33,7 @@ class LearningController extends Controller
 
                 $course->nextQuestionId = $firstUnansweredQuestion?->id;
             } else {
-            $course->nextQuestionId = null;
+                $course->nextQuestionId = null;
             }
         }
         return view('student.index', [
@@ -41,11 +41,12 @@ class LearningController extends Controller
         ]);
     }
 
-    public function learning(Course $course, $question){
+    public function learning(Course $course, $question)
+    {
         $user = Auth::user();
         $isEnrolled = $user->courses->contains($course->id);
 
-        if(!$isEnrolled){
+        if (!$isEnrolled) {
             abort(404);
         }
 
@@ -60,13 +61,18 @@ class LearningController extends Controller
     }
 
 
-    public function learning_rapport(Course $course){
+    public function learning_rapport(Course $course)
+    {
 
         $studentId = Auth::id();
         $studentAnswers = StudentAnswer::where('user_id', $studentId)
-        ->whereIn('course_question_id', $course->questions->pluck('id'))
-        ->distinct()
-        ->get();
+            ->whereIn('id', function ($query) use ($course) {
+                $query->select('id')
+                    ->from('course_questions')
+                    ->where('course_id', $course->id);
+            })
+            ->get();
+
 
         $totalQuestion = CourseQuestion::where('course_id', $course->id)->count();
         $totalCorrectAnswer = $studentAnswers->where('answer', 'correct')->count();
@@ -75,8 +81,8 @@ class LearningController extends Controller
             'course' => $course,
             'studentAnswers' => $studentAnswers,
             'totalQuestion' => $totalQuestion,
+            'totalCorrectAnswer' => $totalCorrectAnswer,
             'passed' => $passed
         ]);
     }
 }
-

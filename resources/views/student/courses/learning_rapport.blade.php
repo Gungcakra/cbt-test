@@ -23,13 +23,13 @@
                     <div class="w-6 h-6 flex shrink-0">
                         <img src="{{ asset('images/icons/note-text.svg')}}" alt="icon">
                     </div>
-                    <p class="font-semibold">6 of 6 correct</p>
+                    <p class="font-semibold">{{$totalCorrectAnswer}} of {{ $totalQuestion }} correct</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="flex items-center">
-        <p class="p-[16px_20px] rounded-[10px] bg-[#FD445E] font-bold text-lg text-white outline-[#FD445E] outline-dashed outline-[3px] outline-offset-[7px] mr-[10px]">Not Passed</p>
+        <p class="p-[16px_20px] rounded-[10px] bg-[#{{ $passed ? '06BC65' : 'FD445E' }}] font-bold text-lg text-white outline-[#{{ $passed ? '06BC65' : 'FD445E' }}] outline-dashed outline-[3px] outline-offset-[7px] mr-[10px]">{{ $passed ? 'Passed' : 'Not Passed' }}</p>
         <!-- <p class="p-[16px_20px] rounded-[10px] bg-[#06BC65] font-bold text-lg text-white outline-[#06BC65] outline-dashed outline-[3px] outline-offset-[7px] mr-[10px]">Passed</p> -->
     </div>
 </div>
@@ -39,10 +39,10 @@
     <div class="question-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
         <div class="flex flex-col gap-[6px]">
             <p class="text-[#7F8190]">Question</p>
-            <p class="font-bold text-xl">Why do we need to do marketing?</p>
+            <p class="font-bold text-xl">{{ $answer->question->question }}</p>
         </div>
         <div class="flex items-center gap-[14px]">
-            <p class="bg-[#06BC65] rounded-full p-[8px_20px] text-white font-semibold text-sm">Success</p>
+            <p class="bg-[#{{ $answer->answer === 'correct' ? '06BC65' : 'be1b1b' }}] rounded-full p-[8px_20px] text-white font-semibold text-sm">{{ $answer->answer }}</p>
         </div>
     </div>
     @empty
