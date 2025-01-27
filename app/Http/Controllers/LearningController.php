@@ -71,7 +71,7 @@ class LearningController extends Controller
 
         $studentId = Auth::id();
         $studentAnswers = StudentAnswer::where('user_id', $studentId)
-            ->whereIn('id', function ($query) use ($course) {
+            ->whereIn('course_question_id', values: function ($query) use ($course) {
                 $query->select('id')
                     ->from('course_questions')
                     ->where('course_id', $course->id);

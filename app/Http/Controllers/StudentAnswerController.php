@@ -35,8 +35,6 @@ class StudentAnswerController extends Controller
      */
     public function store(Request $request, Course $course, $question)
     {
-            $question_detail = CourseQuestion::where('id', $question)->first();
-
             $validated = $request->validate([
                 'answer_id' => 'required|exists:course_answers,id'
             ]);
@@ -48,7 +46,7 @@ class StudentAnswerController extends Controller
                 
                 if($selectedAnswer->course_question_id != $question){
                     $error = ValidationException::withMessages([
-                        'system_error' => ['System Error' . 'Jawaban tidak tersedia pada pertanyaan']
+                        'system_error' => ["System Error: Jawaban tidak tersedia pada pertanyaan"]
                     ]);
                 }
 
@@ -56,7 +54,7 @@ class StudentAnswerController extends Controller
 
                 if($existingAnswer){
                     $error = ValidationException::withMessages([
-                        'system_error' => ['System Error' . 'Petanyaan Sudah Di Jawab']
+                        'system_error' => ["System Error: Petanyaan Sudah Di Jawab"]
                     ]);
                 }
 
@@ -83,9 +81,9 @@ class StudentAnswerController extends Controller
                     return redirect()->route('dashboard.learning.finished.course', $course->id);
                 }
             } catch (Exception $e) {
-                DB::rolback();
+                DB::rollback();
                 $error = ValidationException::withMessages([
-                    'system_error' => ['System Error' . $e->getMessage()]
+                    'system_error' => ["System Error: {$e->getMessage()}"]
                 ]);
                 throw $error;
             }

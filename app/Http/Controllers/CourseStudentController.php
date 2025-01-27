@@ -27,7 +27,7 @@ class CourseStudentController extends Controller
             })->where('user_id', $student->id)->get();
 
             $answerCount = $studentAnswers->count();
-            $correctAnswerCount = $studentAnswers->where('is_correct', 1)->count();
+            $correctAnswerCount = $studentAnswers->where('answer', 'correct')->count();
             if($answerCount == 0){
                 $student->status = 'Not Started';
             } else if($correctAnswerCount < $totalQuestions){
