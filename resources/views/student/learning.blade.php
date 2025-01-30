@@ -46,7 +46,7 @@
                     <div class="hidden group-has-[:checked]:block">
                         <img src="{{asset('images/icons/tick-circle.svg')}}" alt="icon">
                     </div>
-                    <input type="radio" name="answer_id" id="{{ $answer->id }}" value="{{ $answer->id }}" class="hidden">
+                    <input autocomplete="off" type="radio" name="answer_id" id="{{ $answer->id }}" value="{{ $answer->id }}" class="hidden">
                 </label>
                 @endforeach
 

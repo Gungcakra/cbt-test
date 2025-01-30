@@ -50,7 +50,7 @@
             <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
                 <img src="{{ asset('images/icons/note-text.svg')}}" class="h-full w-full object-contain" alt="icon">
             </div>
-            <input type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write the question" name="question">
+            <input autocomplete="off" type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write the question" name="question">
         </div>
     </div>
     <div class="flex flex-col gap-[10px]">
@@ -60,9 +60,9 @@
                 <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
                     <img src="{{ asset('images/icons/edit.svg')}}" class="h-full w-full object-contain" alt="icon">
                 </div>
-                <input type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write better answer option" name="answers[]">
+                <input autocomplete="off" type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write better answer option" name="answers[]">
             </div>
-            <label class="font-semibold flex items-center gap-[10px]"><input type="radio" value="{{ $i }}" name="correct_answer" class="w-[24px] h-[24px] appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-full checked:bg-[#2B82FE] ring ring-[#EEEEEE]" />
+            <label class="font-semibold flex items-center gap-[10px]"><input autocomplete="off" type="radio" value="{{ $i }}" name="correct_answer" class="w-[24px] h-[24px] appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-full checked:bg-[#2B82FE] ring ring-[#EEEEEE]" />
                 Correct
             </label>
     </div>

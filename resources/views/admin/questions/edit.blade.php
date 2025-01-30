@@ -51,7 +51,7 @@
             <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
                 <img src="{{ asset('images/icons/note-text.svg')}}" class="h-full w-full object-contain" alt="icon">
             </div>
-            <input type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write the question" name="question" value="{{ $courseQuestion->question }}">
+            <input autocomplete="off" type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write the question" name="question" value="{{ $courseQuestion->question }}">
         </div>
     </div>
     <div class="flex flex-col gap-[10px]">
@@ -63,10 +63,10 @@
                 <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
                     <img src="{{ asset('images/icons/edit.svg')}}" class="h-full w-full object-contain" alt="icon">
                 </div>
-                <input type="text" value="{{$answer->answer}}" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write better answer option" name="answers[]">
+                <input autocomplete="off" type="text" value="{{$answer->answer}}" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write better answer option" name="answers[]">
             </div>
             <label class="font-semibold flex items-center gap-[10px]"
-                ><input
+                ><input autocomplete="off"
                 type="radio"
                 value="{{ $index }}"
                 {{$answer->is_correct ? 'checked' : ''}}

@@ -24,7 +24,7 @@
     @csrf
     @method('PUT')
     <div class="flex gap-5 items-center">
-        <input type="file" name="cover" id="icon" class="peer hidden" onchange="previewFile()" data-empty="true">
+        <input autocomplete="off" type="file" name="cover" id="icon" class="peer hidden" onchange="previewFile()" data-empty="true">
         <div class="relative w-[100px] h-[100px] rounded-full overflow-hidden peer-data-[empty=true]:border-[3px] peer-data-[empty=true]:border-dashed peer-data-[empty=true]:border-[#EEEEEE]">
             <div class="relative file-preview z-10 w-full h-full ">
                 <img src="{{Storage::url($course->cover) }}" class="thumbnail-icon w-full h-full object-cover" alt="thumbnail">
@@ -41,7 +41,7 @@
             <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
                 <img src="{{asset('images/icons/note-favorite-outline.svg')}}" class="w-full h-full object-contain" alt="icon">
             </div>
-            <input value="{{ $course->name }}" type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write your better course name" name="name" required>
+            <input autocomplete="off" value="{{ $course->name }}" type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write your better course name" name="name" required>
         </div>
     </div>
     <div class="group/category flex flex-col gap-[10px]">
@@ -127,7 +127,7 @@
             </select>
         </div>
     </div>
-    <label class="font-semibold flex items-center gap-[10px]"><input type="radio" name="tnc" class="w-[24px] h-[24px] appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-full checked:bg-[#2B82FE] ring ring-[#EEEEEE]" checked />
+    <label class="font-semibold flex items-center gap-[10px]"><input autocomplete="off" type="radio" name="tnc" class="w-[24px] h-[24px] appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-full checked:bg-[#2B82FE] ring ring-[#EEEEEE]" checked />
         I have read terms and conditions
     </label>
     <div class="flex items-center gap-5">

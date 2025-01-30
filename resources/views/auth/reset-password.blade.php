@@ -3,7 +3,7 @@
         @csrf
 
         <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+        <input autocomplete="off" type="hidden" name="token" value="{{ $request->route('token') }}">
 
         <!-- Email Address -->
         <div>

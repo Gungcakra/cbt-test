@@ -129,7 +129,7 @@
             <div class="nav flex justify-between p-5 border-b border-[#EEEEEE]">
                 <form
                     class="search flex items-center w-[400px] h-[52px] p-[10px_16px] rounded-full border border-[#EEEEEE]">
-                    <input type="text"
+                    <input autocomplete="off" type="text"
                         class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none"
                         placeholder="Search by report, student, etc" name="search">
                     <button type="submit" class="ml-[10px] w-8 h-8 flex items-center justify-center">
@@ -206,7 +206,7 @@
                         <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
                             <img src="{{ asset('images/icons/sms.svg')}}" class="h-full w-full object-contain" alt="icon">
                         </div>
-                        <input type="text"
+                        <input autocomplete="off" type="text"
                             class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none"
                             placeholder="Write student email address" name="email">
                     </div>
