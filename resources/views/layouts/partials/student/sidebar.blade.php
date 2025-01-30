@@ -93,7 +93,7 @@
             </li>
         </ul>
     </div>
-    <a href="">
+    {{-- <a href="">
         <div class="w-full flex gap-3 items-center p-4 rounded-[14px] bg-[#0A090B] mt-[30px]">
             <div>
                 <img src="{{ asset('images/icons/crown-round-bg.svg')}}" alt="icon">
@@ -103,5 +103,5 @@
                 <p class="text-sm leading-[21px] text-[#A0A0A0]">Unlock features</p>
             </div>
         </div>
-    </a>
+    </a> --}}
 </div>
