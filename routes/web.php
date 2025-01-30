@@ -9,7 +9,7 @@ use App\Http\Controllers\StudentAnswerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view(view: 'auth.login');
 });
 
 Route::get('/dashboard', function () {
