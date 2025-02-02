@@ -27,6 +27,7 @@ class CourseQuestionController extends Controller
     {
         $students = $course->students()->orderBy('id', 'DESC')->get();
         return view('admin.questions.create', [
+            'title' => 'Create Question',
             'course' => $course,
             'students' => $students
         ]);
@@ -85,6 +86,7 @@ class CourseQuestionController extends Controller
         $course = $courseQuestion->course;
         $students = $course->students()->orderBy('id', 'DESC')->get();
         return view('admin.questions.edit', [
+            'title' => 'Edit Question',
             'courseQuestion' => $courseQuestion,
             'course' => $course,
             'students' => $students

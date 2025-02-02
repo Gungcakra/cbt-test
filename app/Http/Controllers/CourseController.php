@@ -18,6 +18,7 @@ class CourseController extends Controller
     {
         $courses = Course::orderBy('id', 'DESC')->get();
         return view('admin.courses.index', [
+            'title' => 'Courses',
             'courses' => $courses
         ]);
     }
@@ -29,6 +30,7 @@ class CourseController extends Controller
     {
         $categories = Category::all();
         return view('admin.courses.create', [
+            'title' => 'Create Course',
             'categories' => $categories
         ]);
     }
@@ -71,6 +73,7 @@ class CourseController extends Controller
         $students = $course->students()->orderBy('id', 'DESC')->get();
         $questions = $course->questions()->orderBy('id', 'DESC')->get();
         return view('admin.courses.manage', [
+            'title' => 'Manage Course',
             'course' => $course,
             'students' => $students,
             'questions' => $questions
@@ -84,6 +87,7 @@ class CourseController extends Controller
     {
         $categories = Category::all();
         return view('admin.courses.edit', [
+            'title' => 'Edit Course',
             'course' => $course,
             'categories' => $categories
         ]);

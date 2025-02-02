@@ -37,6 +37,7 @@ class LearningController extends Controller
             }
         }
         return view('student.index', [
+            'title' => 'My Courses',
             'myCourses' => $myCourses
         ]);
     }
@@ -55,6 +56,7 @@ class LearningController extends Controller
             ->firstOrFail();
 
         return view('student.learning', [
+            'title' => 'Learning: ' . $course->name,
             'course' => $course,
             'question' => $currentQuestion
         ]);
@@ -63,6 +65,7 @@ class LearningController extends Controller
     public function learning_finished(Course $course)
     {
         return view('student.courses.learning_finished',[
+            'title' => 'Learning Finished',
             'course' => $course
         ]);
     }
@@ -83,6 +86,7 @@ class LearningController extends Controller
         $totalCorrectAnswer = $studentAnswers->where('answer', 'correct')->count();
         $passed = $totalCorrectAnswer == $totalQuestion;
         return view('student.courses.learning_rapport', [
+            'title' => 'Learning Rapport',
             'course' => $course,
             'studentAnswers' => $studentAnswers,
             'totalQuestion' => $totalQuestion,

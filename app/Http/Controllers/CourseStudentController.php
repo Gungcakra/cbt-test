@@ -37,6 +37,7 @@ class CourseStudentController extends Controller
             } 
         }
         return view('admin.students.index',[
+            'title' => 'Students',
             'course' => $course,
             'students' => $students,
             'questions' => $questions,
@@ -52,6 +53,7 @@ class CourseStudentController extends Controller
     {
         $students = $course->students()->orderBy('id', 'DESC')->get();
         return view('admin.students.add_student', [
+            'title' => 'Add Student',
             'course' => $course,
             'students' => $students
         ]);
