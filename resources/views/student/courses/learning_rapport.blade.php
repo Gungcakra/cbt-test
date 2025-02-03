@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.student')
 @section('content')
 
 <div class="flex flex-col gap-10 px-5 mt-5">
