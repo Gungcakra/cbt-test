@@ -13,7 +13,22 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard',[
+        'title' => 'Dashboard'
+    ]);
+})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    if (auth()->user()->hasRole('teacher')) {
+        return view('dashboardTeacher', [
+            'title' => 'Dashboard Teacher'
+        ]);
+    } elseif (auth()->user()->hasRole('student')) {
+        return view('dashboadStudent', [
+            'title' => 'Dashboard Student'
+        ]);
+    } else {
+        abort(403);
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
