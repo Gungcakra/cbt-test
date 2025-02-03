@@ -20,7 +20,7 @@
                     <div>
                         <img src="{{ asset('images/icons/note-favorite.svg')}}" alt="icon">
                     </div>
-                    <p class="font-semibold transition-all duration-300 {{ request()->routeIs('dashboard.learning.index') ? 'text-white' : '' }} hover:text-white">learning</p>
+                    <p class="font-semibold transition-all duration-300 {{ request()->routeIs('dashboard.learning.index') ? 'text-white' : '' }} hover:text-white">My Courses</p>
                 </a>
             </li>
 
